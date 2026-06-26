@@ -1,9 +1,10 @@
 from dotenv import load_dotenv
+from pathlib import Path
 from langchain_openai import OpenAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from openai import OpenAI
 
-load_dotenv()
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 # Open AI Client
 client = OpenAI()
@@ -40,7 +41,7 @@ SYSTEM_PROMPT = f"""
 """
 
 #Response
-response = client.chat.complete.create(
+response = client.chat.completions.create(
     model="gpt-5",
     messages=[
         { "role": "system", "content": SYSTEM_PROMPT },

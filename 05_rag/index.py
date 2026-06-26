@@ -5,7 +5,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 
-load_dotenv()
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 pdf_path = Path(__file__).parent / "nodejs.pdf"
 
@@ -15,7 +15,7 @@ docs = loader.load()
 
 # Split the docs into smaller chunks
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=400)
-chunks = text_splitter.split_text(documents=docs)
+chunks = text_splitter.split_documents(documents=docs)
 
 # Vector Embedding #TODO need to add the openai's api for this
 embedding_model = OpenAIEmbeddings(
