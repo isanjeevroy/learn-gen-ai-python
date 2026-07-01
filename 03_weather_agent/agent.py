@@ -94,7 +94,7 @@ while True:
 
     while True:
         response = client.chat.completions.parse(
-            model="gemini-3.5-flash",
+            model="gpt-4.1-mini",
             response_format=MyOutputFormat,
             messages= message_history
         )
